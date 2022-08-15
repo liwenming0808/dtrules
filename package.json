@@ -1,6 +1,6 @@
 {
   "name": "dtrules",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "desensitization rule",
   "main": "index.js",
   "type": "module",
@@ -20,6 +20,5 @@
     "collectCoverage": true
   },
   "repository": "git",
-  "homepage":
-
+  "homepage": "https://github.com/liwenming0808/dtrules.git"
 }
