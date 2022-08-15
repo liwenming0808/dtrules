@@ -3,7 +3,7 @@ import { dtTypeEnum } from '../index.js';
  * 脱敏规则
  * 1.姓名： 展示后一  如：*三  type: name
  * 2.身份证： 展示前2后2 如： 32********81 type: idCard
- * 3.手机号： 展示前三后三  如：150*****999 type: mobile
+ * 3.手机号： 展示前三后三  如：150****999 type: mobile
  * 4.银行卡：展示后四 如：*********1234  type: bankCard
  * 5.固定电话： 展示区号和后两位 如：021-******62 // telephone
  * 6.地址：展示到省市  如：上海市****** // address
@@ -22,12 +22,17 @@ function desensitizationRule(value, type) {
           break;
   
         case dtTypeEnum.ID_CARD: // 身份证
-          result = value.replace(/^(.{2})(?:\w+)(.{2})$/, "\$1**************\$2");
+          let cardSrarts = '';
+          for (let i = 0; i < value.length - 4; i++) {
+            cardSrarts = cardSrarts + '*'
+          }
+          result = value.slice(0,2) + cardSrarts + value.slice(value.length - 2, value.length);
+          // result = value.replace(/^(.{2})(?:\w+)(.{2})$/, "\$1**************\$2");
           break;
   
         case dtTypeEnum.MOBILE: // 手机号
           const mobileList = value.split(',');
-          result = mobileList.map(item => item.replace(/^(.{3})(?:\w+)(.{3})$/, "\$1****\$2")).join(',');
+          result = mobileList.map(item => item.replace(/^(.{3})(?:\w+)(.{4})$/, "\$1****\$2")).join(',');
           break;
   
         case dtTypeEnum.BACK_CARD: // 银行卡
@@ -59,6 +64,7 @@ function desensitizationRule(value, type) {
             result = value.slice(0, indexLength) + ressStars;
           }
           break;  
+
         case dtTypeEnum.MAILBOX: // 邮箱地址
           const box_before = value.split('@')[0];
           let boxStars = '';

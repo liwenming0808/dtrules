@@ -1,6 +1,6 @@
 {
   "name": "dtrules",
-  "version": "1.0.9",
+  "version": "1.1.1",
   "description": "desensitization rule",
   "main": "index.js",
   "type": "module",
