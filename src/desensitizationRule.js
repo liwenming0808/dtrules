@@ -32,7 +32,7 @@ function desensitizationRule(value, type) {
   
         case dtTypeEnum.MOBILE: // 手机号
           const mobileList = value.split(',');
-          result = mobileList.map(item => item.replace(/^(.{3})(?:\w+)(.{4})$/, "\$1****\$2")).join(',');
+          result = mobileList.map(item => item.replace(/^(.{3})(?:\w+)(.{3})$/, "\$1*****\$2")).join(',');
           break;
   
         case dtTypeEnum.BACK_CARD: // 银行卡
